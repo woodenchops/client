@@ -1,52 +1,129 @@
 import React, {Component} from 'react';
 import './App.css';
-import List from './components/List';
-import EditListItem from './components/EditListIem'; 
+import AddItemForm from './components/AddItemForm';
+import ShoppingCart from './components/ShoppingCart';
+import Selection from './components/Selection.jsx';
 
 class App extends Component {
 
   state = {
-    editMode: false,
+    admin: false,
+    total: 0,
     items: [
       {
         name: 'Bread',
-        price: 1.90
+        price: 1.90,
+        edit: false,
+        count: 0
       },
       {
         name: 'Milk',
-        price: 1.90
+        price: 1.90,
+        edit: false,
+        count: 0
       }
     ]
   }
 
-  saveItemName = (value, id) => {
-    this.setState({
-      items: [...this.state.items.map((x, indx) =>  {
+
+  addItem = (itemName, itemPrice) => {
+    let isAlreadyInCart = this.state.items.find(obj => obj.name.trim().toLowerCase() === itemName.trim().toLowerCase());
+
+    if(isAlreadyInCart) {
+      alert('item already in cart');
+      return;
+    }
+      this.setState(prevState => {
         return {
-          ...x, 
-         name: (indx === id) ? value : x.name
+          items: [...prevState.items, {name: itemName, price: parseFloat(itemPrice), edit: false, count: 0}]
         }
-      })],
-      editMode: false
+      });
+    
+  }
+
+  saveItemName = (value, id) => {
+    this.setState(prevState => {
+      return {
+        items: [...prevState.items.map((x, indx) =>  {
+          return {
+            ...x, 
+           name: (indx === id) ? value : x.name
+          }
+        })]
+      }
     });
   }
 
-  editItem = () => {
-    this.setState({
-      editMode: true
+  deleteItemName = (id, price) => {
+    this.setState(prevState => {
+      return {
+        items: [...prevState.items.filter((x, indx) =>  {
+         return (indx !== id);
+        })],
+        total: prevState.total - price
+      }
+    });
+  }
+
+  login = () => {
+    this.setState(prevState => {
+      return {
+        admin: !prevState.admin
+      }
     })
   }
 
+  addOneMore = (id, itemPrice) => {
+    this.setState(prevState => {
+      return {
+        items: [...prevState.items.map((x, indx) =>  {
+          return {
+            ...x, 
+           count: (indx === id) ? (x.count + 1) : x.count,
+          }
+        })],
+        total: prevState.total + itemPrice
+      }
+    });
+  }
+
+  deleteOneMore = (id, itemPrice, count) => {
+    this.setState(prevState => {
+      if(prevState.total !== 0 || count > 0) {
+      return {
+        items: [...prevState.items.map((x, indx) =>  {
+          return {
+            ...x, 
+           count: (indx === id) ? (x.count - 1) : x.count,
+          }
+        })],
+        total: prevState.total - itemPrice
+      }
+    }
+    });
+  }
+
+  
   render() {
-    const {items, editMode} = this.state
+    const {items} = this.state;
     return (
       <div className="App">
-        <h1>hello</h1>
-        <ul>
-          { (items) && (items.map((item, idx) => (
-              (!editMode) ? <List key={idx} name={item.name} itemId={idx} editItem={this.editItem}/> : (<EditListItem key={idx} name={item.name} itemId={idx} saveItemName={this.saveItemName}/>)
-          ))) }
-        </ul>
+        <button onClick={() => this.login()}>Log in as admin</button>
+        <Selection 
+          items={items}
+          admin={this.state.admin} 
+          saveItemName={this.saveItemName} 
+          deleteItemName={this.deleteItemName} 
+          addOneMore={this.addOneMore}
+          deleteOneMore={this.deleteOneMore}
+        />
+        <AddItemForm 
+          admin={this.state.admin} 
+          addItem={this.addItem}
+        />
+        <ShoppingCart 
+          total={this.state.total}
+        />
       </div>
     );
   }
