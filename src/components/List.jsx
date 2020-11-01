@@ -5,8 +5,8 @@ const List = ({name, price, count, addOneMore, deleteOneMore, itemId, saveItemNa
     const [editMode, setEditMode] = useState(false);
 
     const handleDeleteItem = useCallback(() => {
-        deleteItemName(itemId, price);
-    }, [deleteItemName, itemId, price])
+        deleteItemName(itemId, price, count);
+    }, [deleteItemName, itemId, price, count])
 
     return ( 
         <li>
@@ -14,7 +14,6 @@ const List = ({name, price, count, addOneMore, deleteOneMore, itemId, saveItemNa
             (<> <span name={name}>{name}</span> 
                 <button onClick={() => addOneMore(itemId, price)}>+</button> 
                 <button onClick={ () => deleteOneMore(itemId, price, count) }>-</button> 
-                <span>{`(${count})`}</span>
                {(admin) &&
                <>
                <button onClick={() => setEditMode(true)}>Edit</button> 

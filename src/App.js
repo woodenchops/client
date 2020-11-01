@@ -54,15 +54,17 @@ class App extends Component {
     });
   }
 
-  deleteItemName = (id, price) => {
+  deleteItemName = (id, price, count) => {
+    
     this.setState(prevState => {
       return {
         items: [...prevState.items.filter((x, indx) =>  {
          return (indx !== id);
         })],
-        total: prevState.total - price
+        total: (prevState.total - (price * count))
       }
     });
+  
   }
 
   login = () => {
@@ -82,14 +84,14 @@ class App extends Component {
            count: (indx === id) ? (x.count + 1) : x.count,
           }
         })],
-        total: prevState.total + itemPrice
+        total: this.convertTotalIntoTwoDecimals(prevState.total, itemPrice, 'ADD')
       }
     });
   }
 
   deleteOneMore = (id, itemPrice, count) => {
     this.setState(prevState => {
-      if(prevState.total !== 0 || count > 0) {
+      if(count > 0) {
       return {
         items: [...prevState.items.map((x, indx) =>  {
           return {
@@ -97,10 +99,32 @@ class App extends Component {
            count: (indx === id) ? (x.count - 1) : x.count,
           }
         })],
-        total: prevState.total - itemPrice
+        total: this.convertTotalIntoTwoDecimals(prevState.total, itemPrice, 'SUBTRACT')
       }
     }
     });
+  }
+
+  setTotal = (value) => {
+    this.setState(prevState => {
+      return {
+        total: value
+      }
+    })
+  }
+
+  convertTotalIntoTwoDecimals = (total, price, TYPE) => {
+    let updatedTotal;
+    switch(TYPE){
+      case 'ADD':
+        updatedTotal = parseFloat(total) + parseFloat(price);
+        return parseFloat(updatedTotal).toFixed(2);
+      case 'SUBTRACT':
+        updatedTotal = parseFloat(total) - parseFloat(price);
+        return parseFloat(updatedTotal).toFixed(2);
+      default:
+        return parseFloat(updatedTotal).toFixed(2);
+    }
   }
 
   
@@ -123,6 +147,9 @@ class App extends Component {
         />
         <ShoppingCart 
           total={this.state.total}
+          items={this.state.items}
+          deleteItemName={this.deleteItemName}
+          setTotal={this.setTotal}
         />
       </div>
     );
