@@ -26,7 +26,7 @@ class App extends Component {
   }
 
 
-  addItem = (itemName, itemPrice) => {
+  addItemToOptionsList = (itemName, itemPrice) => {
     let isAlreadyInCart = this.state.items.find(obj => obj.name.trim().toLowerCase() === itemName.trim().toLowerCase());
 
     if(isAlreadyInCart) {
@@ -54,7 +54,7 @@ class App extends Component {
     });
   }
 
-  deleteItemName = (id, price, count) => {
+  deleteItemFromOptionList = (id, price, count) => {
     
     this.setState(prevState => {
       return {
@@ -75,7 +75,7 @@ class App extends Component {
     })
   }
 
-  addOneMore = (id, itemPrice) => {
+  addOneMoreToCart = (id, itemPrice) => {
     this.setState(prevState => {
       return {
         items: [...prevState.items.map((x, indx) =>  {
@@ -89,7 +89,7 @@ class App extends Component {
     });
   }
 
-  deleteOneMore = (id, itemPrice, count) => {
+  deleteOneMoreFromCart = (id, itemPrice, count) => {
     this.setState(prevState => {
       if(count > 0) {
       return {
@@ -137,18 +137,17 @@ class App extends Component {
           items={items}
           admin={this.state.admin} 
           saveItemName={this.saveItemName} 
-          deleteItemName={this.deleteItemName} 
-          addOneMore={this.addOneMore}
-          deleteOneMore={this.deleteOneMore}
+          deleteItemFromOptionList={this.deleteItemFromOptionList} 
+          addOneMoreToCart={this.addOneMoreToCart}
+          deleteOneMoreFromCart={this.deleteOneMoreFromCart}
         />
         <AddItemForm 
           admin={this.state.admin} 
-          addItem={this.addItem}
+          addItemToOptionsList={this.addItemToOptionsList}
         />
         <ShoppingCart 
           total={this.state.total}
           items={this.state.items}
-          deleteItemName={this.deleteItemName}
           setTotal={this.setTotal}
         />
       </div>

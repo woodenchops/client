@@ -1,7 +1,7 @@
 import React from 'react';
 import List from '../components/List';
 
-const Selection = ({items, admin, saveItemName, deleteItemName, addOneMore, deleteOneMore}) => {
+const Selection = ({items, admin, saveItemName, deleteItemFromOptionList, addOneMoreToCart, deleteOneMoreFromCart}) => {
     return ( 
         <ul>
           { (items) && (items.map((item, idx) => (
@@ -13,9 +13,9 @@ const Selection = ({items, admin, saveItemName, deleteItemName, addOneMore, dele
               count={item.count} 
               itemId={idx} 
               saveItemName={saveItemName} 
-              deleteItemName={deleteItemName} 
-              addOneMore={addOneMore}
-              deleteOneMore={deleteOneMore}
+              deleteItemFromOptionList={deleteItemFromOptionList} 
+              addOneMoreToCart={addOneMoreToCart}
+              deleteOneMoreFromCart={deleteOneMoreFromCart}
               /> 
           ))) }
         </ul>

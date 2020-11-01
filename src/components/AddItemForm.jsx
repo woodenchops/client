@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 
-const AddItemForm = ({addItem, admin}) => {
+const AddItemForm = ({addItemToOptionsList, admin}) => {
     const [itemName, setItemName] = useState('');
     const [itemPrice, setItemPrice] = useState('');
 
@@ -10,10 +10,10 @@ const AddItemForm = ({addItem, admin}) => {
             alert('enter name and price');
             return;
         } 
-        addItem(itemName, itemPrice);
+        addItemToOptionsList(itemName, itemPrice);
         setItemName('');
         setItemPrice('');
-    }, [addItem, itemPrice, itemName])
+    }, [addItemToOptionsList, itemPrice, itemName])
 
     return (
         (admin) && 
