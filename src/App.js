@@ -26,8 +26,8 @@ class App extends Component {
   }
 
 
-  addItemToOptionsList = (itemName, itemPrice) => {
-    let isAlreadyInCart = this.state.items.find(obj => obj.name.trim().toLowerCase() === itemName.trim().toLowerCase());
+  addItemToOptionsList = (product) => {
+    let isAlreadyInCart = this.state.items.find(obj => obj.name.trim().toLowerCase() === product.name.trim().toLowerCase());
 
     if(isAlreadyInCart) {
       alert('item already in cart');
@@ -35,7 +35,7 @@ class App extends Component {
     }
       this.setState(prevState => {
         return {
-          items: [...prevState.items, {name: itemName, price: parseFloat(itemPrice), edit: false, count: 0}]
+          items: [...prevState.items, {name: product.name, price: parseFloat(product.price), edit: false, count: 0}]
         }
       });
     
@@ -108,7 +108,7 @@ class App extends Component {
   setTotal = (value) => {
     this.setState(prevState => {
       return {
-        total: value
+        total: prevState.value = value
       }
     })
   }
