@@ -2,6 +2,7 @@ import React from 'react';
 import List from '../components/List';
 
 const Selection = ({items, admin, saveItemName, deleteItemFromOptionList, addOneMoreToCart, deleteOneMoreFromCart}) => {
+
     return (
       <>
       <h3>Options list</h3>

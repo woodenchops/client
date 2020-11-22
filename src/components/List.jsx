@@ -2,11 +2,13 @@ import React, {useState, useCallback} from 'react';
 import EditListItem from './EditListIem';
 
 const List = ({name, price, count, addOneMoreToCart, deleteOneMoreFromCart, itemId, saveItemName, deleteItemFromOptionList, admin}) => {
+
+
     const [editMode, setEditMode] = useState(false);
 
     const handleDeleteItem = useCallback(() => {
         deleteItemFromOptionList(itemId, price, count);
-    }, [deleteItemFromOptionList, itemId, price, count])
+    }, [deleteItemFromOptionList, itemId, price, count]);
 
     return ( 
         <li>

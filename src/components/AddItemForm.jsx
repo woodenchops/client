@@ -26,7 +26,7 @@ const AddItemForm = ({addItemToOptionsList, admin}) => {
             name: '',
             price: ''
         });
-    }, [addItemToOptionsList, product])
+    }, [addItemToOptionsList, product]);
 
     return (
 
@@ -38,7 +38,7 @@ const AddItemForm = ({addItemToOptionsList, admin}) => {
                 <label htmlFor="name">Enter item name</label>
                 <input type="text" name="name" id="name" value={product.name} onChange={handleInputChange}/><br></br>
                 <label htmlFor="name">Enter item price</label>
-                <input type="text" name="price" id="price" value={product.price} onChange={handleInputChange}/><br></br>
+                <input type="number" name="price" id="price" value={product.price} onChange={handleInputChange}/><br></br>
                 <button onClick={(e) => { handleAddItem(e) }}>Add item</button>
             </form>
         </>
