@@ -14,13 +14,15 @@ export class MasterProvider extends Component {
             name: 'Bread',
             price: 1.90,
             edit: false,
-            count: 0
+            count: 0,
+            stock: 5
           },
           {
             name: 'Milk',
             price: 1.90,
             edit: false,
-            count: 0
+            count: 0,
+            stock: 5
           }
         ],
     
@@ -34,7 +36,7 @@ export class MasterProvider extends Component {
         }
           this.setState(prevState => {
             return {
-              items: [...prevState.items, {name: product.name, price: parseFloat(product.price), edit: false, count: 0}]
+              items: [...prevState.items, {name: product.name, price: parseFloat(product.price), edit: false, count: 0, stock: product.stock}]
             }
           });
         
@@ -95,6 +97,7 @@ export class MasterProvider extends Component {
               return {
                 ...x, 
                count: (indx === id) ? (x.count + 1) : x.count,
+               stock: (indx === id) ? (x.stock - 1) : x.stock,
               }
             })],
             total: this.state.convertTotalIntoTwoDecimals(prevState.total, itemPrice, 'ADD')
@@ -110,6 +113,7 @@ export class MasterProvider extends Component {
               return {
                 ...x, 
                count: (indx === id) ? (x.count - 1) : x.count,
+               stock: (indx === id) ? (x.stock + 1) : x.stock,
               }
             })],
             total: this.state.convertTotalIntoTwoDecimals(prevState.total, itemPrice, 'SUBTRACT')
