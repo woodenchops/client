@@ -1,5 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import EditListItem from './EditListIem';
+import classes from '../styles/Buttons/Buttons.module.css';
 
 const List = ({name, price, count, addOneMoreToCart, deleteOneMoreFromCart, itemId, saveItemName, deleteItemFromOptionList, admin}) => {
 
@@ -40,7 +41,7 @@ const List = ({name, price, count, addOneMoreToCart, deleteOneMoreFromCart, item
 
     }
     return ( 
-        <li>
+        <li className={classes.ProductLi}>
             {(!editMode) ? (defaultListLayout) : (editModeLayout)}
         </li>
         

@@ -1,0 +1,13 @@
+.ProductLi button {
+    background-color: cornflowerblue;
+    border: none;
+    border-radius: 2px;
+    margin: 5px;
+    color: white;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.ProductLi button:hover {
+    cursor: pointer;
+}

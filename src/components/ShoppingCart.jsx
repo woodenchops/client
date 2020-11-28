@@ -1,4 +1,5 @@
 import React, {useMemo} from 'react';
+import classes from '../styles/ShoppingCart/ShoppingCart.module.css';
 
 const ShoppingCart = ({total, items, setTotal}) => {
 
