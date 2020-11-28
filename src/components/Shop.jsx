@@ -24,7 +24,7 @@ const Shop = () => {
     return ( 
         <>
 
-        <button onClick={() => login()}>Log in as admin</button>
+        <button onClick={() => login()}>{admin ? 'log out as admin' : 'log in as admin'}</button>
         <Selection 
           items={items}
           admin={admin} 
