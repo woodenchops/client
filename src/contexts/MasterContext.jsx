@@ -42,13 +42,15 @@ export class MasterProvider extends Component {
         
       },
     
-      saveItemName: (value, id) => {
+      saveItemName: (product, id) => {
         this.setState(prevState => {
           return {
             items: [...prevState.items.map((x, indx) =>  {
               return {
                 ...x, 
-               name: (indx === id) ? value : x.name
+               name: (indx === id) ? product.name : x.name,
+               price: (indx === id) ? product.price : x.price,
+               stock: (indx === id) ? product.stock : x.stock
               }
             })]
           }
