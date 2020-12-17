@@ -43,6 +43,14 @@ export class MasterProvider extends Component {
       },
     
       saveItemName: (product, id) => {
+
+        let isAlreadyInCart = this.state.items.find(obj => obj.name.trim().toLowerCase() === product.name.trim().toLowerCase());
+    
+        if(isAlreadyInCart) {
+          alert('item already in cart');
+          return;
+        }
+
         this.setState(prevState => {
           return {
             items: [...prevState.items.map((x, indx) =>  {
