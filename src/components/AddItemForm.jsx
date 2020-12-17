@@ -42,7 +42,7 @@ const AddItemForm = ({addItemToOptionsList, admin}) => {
                 <label htmlFor="price">Enter item price</label>
                 <input type="number" name="price" id="price" value={product.price} onChange={handleInputChange}/><br></br>
                 <label htmlFor="stock">Enter item stock qty</label>
-                <input type="number" name="stock" id="stock" value={product.price} onChange={handleInputChange}/><br></br>
+                <input type="number" name="stock" id="stock" value={product.stock} onChange={handleInputChange}/><br></br>
                 <button onClick={(e) => { handleAddItem(e) }}>Add item</button>
             </form>
         </>

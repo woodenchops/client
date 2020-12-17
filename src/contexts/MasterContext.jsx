@@ -90,7 +90,8 @@ export class MasterProvider extends Component {
         }
       },
     
-      addOneMoreToCart: (id, itemPrice) => {
+      addOneMoreToCart: (id, itemPrice, stock) => {
+        if(stock > 0) {
         this.setState(prevState => {
           return {
             items: [...prevState.items.map((x, indx) =>  {
@@ -103,6 +104,8 @@ export class MasterProvider extends Component {
             total: this.state.convertTotalIntoTwoDecimals(prevState.total, itemPrice, 'ADD')
           }
         });
+      } 
+
       },
     
       deleteOneMoreFromCart: (id, itemPrice, count) => {
