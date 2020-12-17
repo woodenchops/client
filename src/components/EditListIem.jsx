@@ -26,6 +26,10 @@ const [product, setProduct] = useState({
       setEditMode(false);
     };
 
+    const cancelHandler = () => {
+      setEditMode(false);
+    };
+
     return ( 
         <li>
            <label htmlFor="name">Enter item name</label>
@@ -35,6 +39,7 @@ const [product, setProduct] = useState({
            <label htmlFor="name">Enter item stock</label>
            <input type="number" name='stock' value={product.stock} onChange={(e) => {handleInputChange(e);}}/><br></br>
            <button onClick={() => { saveHandler() }}>save</button>
+           <button onClick={() => { cancelHandler() }}>cancel</button>
         </li>
      );
 }
