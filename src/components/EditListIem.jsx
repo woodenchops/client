@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-const EditListItem = ({name, price, stock, saveItemName, itemId, setEditMode}) => {
+const EditListItem = ({admin, name, price, stock, saveItemName, itemId, setEditMode}) => {
 
 
 const [product, setProduct] = useState({
@@ -29,6 +29,12 @@ const [product, setProduct] = useState({
     const cancelHandler = () => {
       setEditMode(false);
     };
+
+    useEffect(() => {
+      if(!admin) {
+         setEditMode(false);
+      }
+    }, [admin, setEditMode])
 
     return ( 
         <li>
