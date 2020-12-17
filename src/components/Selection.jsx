@@ -14,6 +14,7 @@ const Selection = ({items, admin, saveItemName, deleteItemFromOptionList, addOne
               admin={admin} 
               name={item.name} 
               price={item.price} 
+              stock={item.stock}
               count={item.count} 
               itemId={idx} 
               saveItemName={saveItemName} 

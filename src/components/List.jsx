@@ -2,7 +2,7 @@ import React, {useState, useCallback} from 'react';
 import EditListItem from './EditListIem';
 import classes from '../styles/Buttons/Buttons.module.css';
 
-const List = ({name, price, count, addOneMoreToCart, deleteOneMoreFromCart, itemId, saveItemName, deleteItemFromOptionList, admin}) => {
+const List = ({name, price, count, stock, addOneMoreToCart, deleteOneMoreFromCart, itemId, saveItemName, deleteItemFromOptionList, admin}) => {
 
 
     const [editMode, setEditMode] = useState(false);
@@ -26,8 +26,8 @@ const List = ({name, price, count, addOneMoreToCart, deleteOneMoreFromCart, item
         defaultListLayout = (
             <>
                 <span name={name}>{name}</span>
-                <button onClick={() => addOneMoreToCart(itemId, price)}>+</button> 
-                <button onClick={ () => deleteOneMoreFromCart(itemId, price, count) }>-</button> 
+                <button disabled={stock === 0} onClick={() => addOneMoreToCart(itemId, price, stock)}>+</button>
+                <button onClick={ () => deleteOneMoreFromCart(itemId, price, count) }>-</button> stock <span>{stock}</span> 
             </>
         )
     }
