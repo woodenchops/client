@@ -1,8 +1,11 @@
-import React, {useMemo} from 'react';
-// import classes from '../styles/ShoppingCart/ShoppingCart.module.css';
+import React, {useContext, useMemo, useEffect} from 'react';
+import { MasterContext } from '../contexts/MasterContext';
+import classes from '../styles/ShoppingCart/ShoppingCart.module.css';
 
 
-const ShoppingCart = ({total, items, setTotal}) => {
+const ShoppingCart = () => {
+
+const {total, items, setTotal} = useContext(MasterContext);
 
 return ( 
     <div>
@@ -11,7 +14,7 @@ return (
             {useMemo(() => items && items.length > 0 && items.map((item, idx) => (
               
                 <li key={idx}>
-                    {item.count > 0 && `${item.name}  (${item.count})`} {(item.stock === 0 && <span> - None left in stock</span>)}
+                    {item.count > 0 && `${item.name}  (${item.count})`} {(item.stock === 0 && <span className={classes.NoStock}> - None left in stock</span>)}
                 </li> 
                 
             )), [items])}

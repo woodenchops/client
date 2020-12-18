@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import List from '../components/List';
+import {MasterContext} from '../contexts/MasterContext';
 
-const Selection = ({items, admin, saveItemName, deleteItemFromOptionList, addOneMoreToCart, deleteOneMoreFromCart}) => {
+
+const Selection = () => {
+
+  const {items} = useContext(MasterContext);
 
     return (
       <>
@@ -11,16 +15,11 @@ const Selection = ({items, admin, saveItemName, deleteItemFromOptionList, addOne
           { (items) && (items.map((item, idx) => (
               <List 
               key={idx} 
-              admin={admin} 
               name={item.name} 
               price={item.price} 
               stock={item.stock}
               count={item.count} 
               itemId={idx} 
-              saveItemName={saveItemName} 
-              deleteItemFromOptionList={deleteItemFromOptionList} 
-              addOneMoreToCart={addOneMoreToCart}
-              deleteOneMoreFromCart={deleteOneMoreFromCart}
               /> 
           ))) }
         </ul>

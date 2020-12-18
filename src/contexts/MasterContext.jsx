@@ -25,7 +25,7 @@ export class MasterProvider extends Component {
             stock: 5
           }
         ],
-    
+
     
       addItemToOptionsList: (product) => {
         let isAlreadyInCart = this.state.items.find(obj => obj.name.trim().toLowerCase() === product.name.trim().toLowerCase());

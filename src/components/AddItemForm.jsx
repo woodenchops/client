@@ -1,6 +1,9 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useContext} from 'react';
+import { MasterContext } from '../contexts/MasterContext';
 
-const AddItemForm = ({addItemToOptionsList, admin}) => {
+const AddItemForm = () => {
+
+    const {admin, addItemToOptionsList} = useContext(MasterContext);
     
     const [product, setProduct] = useState({
         name: '',

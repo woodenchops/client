@@ -1,8 +1,11 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useContext} from 'react';
 import EditListItem from './EditListIem';
 import classes from '../styles/Buttons/Buttons.module.css';
+import { MasterContext } from '../contexts/MasterContext';
 
-const List = ({name, price, count, stock, addOneMoreToCart, deleteOneMoreFromCart, itemId, saveItemName, deleteItemFromOptionList, admin}) => {
+const List = ({name, price, count, stock, itemId}) => {
+
+    const {deleteItemFromOptionList, deleteOneMoreFromCart, addOneMoreToCart, saveItemName, admin} = useContext(MasterContext);
 
 
     const [editMode, setEditMode] = useState(false);
@@ -26,7 +29,7 @@ const List = ({name, price, count, stock, addOneMoreToCart, deleteOneMoreFromCar
         defaultListLayout = (
             <>
                 <span name={name}>{name}</span>
-                <button disabled={stock === 0} onClick={() => addOneMoreToCart(itemId, price, stock)}>+</button>
+                <button disabled={stock === 0} className={stock === 0 ? classes.Disabled : ''} onClick={() => addOneMoreToCart(itemId, price, stock)}>+</button>
                 <button onClick={ () => deleteOneMoreFromCart(itemId, price, count) }>-</button> stock <span>{stock}</span> 
             </>
         )
@@ -35,7 +38,7 @@ const List = ({name, price, count, stock, addOneMoreToCart, deleteOneMoreFromCar
     if(editMode) {
         editModeLayout = (
              <>
-                <EditListItem admin={admin} name={name} price={price} stock={stock} setEditMode={setEditMode} itemId={itemId} saveItemName={saveItemName}/> 
+                <EditListItem name={name} price={price} stock={stock} setEditMode={setEditMode} itemId={itemId} saveItemName={saveItemName}/> 
              </>
         )
 

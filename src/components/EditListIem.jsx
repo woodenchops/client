@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {MasterContext} from '../contexts/MasterContext';
 
-const EditListItem = ({admin, name, price, stock, saveItemName, itemId, setEditMode}) => {
+const EditListItem = ({name, price, stock, saveItemName, itemId, setEditMode}) => {
 
+const {admin} = useContext(MasterContext);
 
 const [product, setProduct] = useState({
       name: name,
@@ -37,7 +39,7 @@ const [product, setProduct] = useState({
     }, [admin, setEditMode])
 
     return ( 
-        <li>
+        <>
            <label htmlFor="name">Enter item name</label>
            <input type="text" name='name' value={product.name} onChange={(e) => {handleInputChange(e);}}/><br></br>
            <label htmlFor="name">Enter item price</label>
@@ -46,7 +48,7 @@ const [product, setProduct] = useState({
            <input type="number" name='stock' value={product.stock} onChange={(e) => {handleInputChange(e);}}/><br></br>
            <button onClick={() => { saveHandler() }}>save</button>
            <button onClick={() => { cancelHandler() }}>cancel</button>
-        </li>
+        </>
      );
 }
  

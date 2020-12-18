@@ -9,40 +9,16 @@ import { MasterContext } from '../contexts/MasterContext';
 const Shop = () => {
 
     const {
-        items,
         admin,
-        saveItemName,
-        deleteItemFromOptionList,
-        addOneMoreToCart,
-        deleteOneMoreFromCart,
-        addItemToOptionsList,
-        total,
-        setTotal,
         login
     } = useContext(MasterContext);
 
     return ( 
         <>
-
-        <button onClick={() => login()}>{admin ? 'log out as admin' : 'log in as admin'}</button>
-        <Selection 
-          items={items}
-          admin={admin} 
-          saveItemName={saveItemName} 
-          deleteItemFromOptionList={deleteItemFromOptionList} 
-          addOneMoreToCart={addOneMoreToCart}
-          deleteOneMoreFromCart={deleteOneMoreFromCart}
-        />
-        <AddItemForm 
-          admin={admin} 
-          addItemToOptionsList={addItemToOptionsList}
-        />
-        <ShoppingCart 
-          total={total}
-          items={items}
-          setTotal={setTotal}
-        />
-
+          <button onClick={() => login()}>{admin ? 'log out as admin' : 'log in as admin'}</button>
+          <Selection/>
+          <AddItemForm/>
+          <ShoppingCart/>
         </>
      );
 }

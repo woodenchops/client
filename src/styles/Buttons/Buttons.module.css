@@ -8,6 +8,16 @@
     min-height: 20px;
 }
 
+.ProductLi .Disabled {
+    background-color: #a6a9ad;
+    color: gray;
+}
+
+.ProductLi .Disabled:hover {
+    cursor: not-allowed;
+}
+
 .ProductLi button:hover {
     cursor: pointer;
 }
+
