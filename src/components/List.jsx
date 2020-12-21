@@ -38,7 +38,7 @@ const List = ({name, price, count, stock, itemId}) => {
     if(editMode) {
         editModeLayout = (
              <>
-                <EditListItem name={name} price={price} stock={stock} setEditMode={setEditMode} itemId={itemId} saveItemName={saveItemName}/> 
+                <EditListItem count={count} name={name} price={price} stock={stock} setEditMode={setEditMode} itemId={itemId} saveItemName={saveItemName}/> 
              </>
         )
 

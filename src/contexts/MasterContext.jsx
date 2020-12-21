@@ -26,6 +26,21 @@ export class MasterProvider extends Component {
           }
         ],
 
+      calcTotal: (id, count) => {
+
+        this.setState(prevState => {
+          if(count > 0) {
+          
+          return {
+            total: prevState.items.reduce((x, y, indx) => {
+              return (indx === id) ? (x.price + y.price) : x.price
+            })
+          }
+          
+        }
+        })
+
+      },
     
       addItemToOptionsList: (product) => {
         let isAlreadyInCart = this.state.items.find(obj => obj.name.trim().toLowerCase() === product.name.trim().toLowerCase());
@@ -50,7 +65,7 @@ export class MasterProvider extends Component {
               return {
                 ...x, 
                name: (indx === id) ? product.name : x.name,
-               price: (indx === id) ? product.price : x.price,
+               price: (indx === id) ? parseFloat(product.price) : x.price,
                stock: (indx === id) ? product.stock : x.stock
               }
             })]
@@ -136,6 +151,7 @@ export class MasterProvider extends Component {
         })
       }
     }
+    
     render() { 
         
         return ( 

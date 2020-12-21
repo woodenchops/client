@@ -1,4 +1,4 @@
-import React, {useContext, useMemo, useEffect} from 'react';
+import React, {useContext, useMemo} from 'react';
 import { MasterContext } from '../contexts/MasterContext';
 import classes from '../styles/ShoppingCart/ShoppingCart.module.css';
 

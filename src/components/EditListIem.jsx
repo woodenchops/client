@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {MasterContext} from '../contexts/MasterContext';
 
-const EditListItem = ({name, price, stock, saveItemName, itemId, setEditMode}) => {
+const EditListItem = ({name, price, stock, count, saveItemName, itemId, setEditMode}) => {
 
-const {admin} = useContext(MasterContext);
+const {admin, calcTotal} = useContext(MasterContext);
 
 const [product, setProduct] = useState({
       name: name,
@@ -24,7 +24,8 @@ const [product, setProduct] = useState({
          alert('no text');
          return;
       }
-      saveItemName(product, itemId); 
+      saveItemName(product, itemId);
+      calcTotal(itemId, count);
       setEditMode(false);
     };
 
