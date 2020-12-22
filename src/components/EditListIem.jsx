@@ -25,7 +25,7 @@ const [product, setProduct] = useState({
          return;
       }
       saveItemName(product, itemId);
-      calcTotal(itemId, count);
+      calcTotal(itemId, count, price);
       setEditMode(false);
     };
 

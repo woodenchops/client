@@ -26,15 +26,19 @@ export class MasterProvider extends Component {
           }
         ],
 
-      calcTotal: (id, count) => {
+      calcTotal: (id, count, price) => {
 
         this.setState(prevState => {
           if(count > 0) {
+
+            let updatedPrices = prevState.items.reduce((x, y, indx) => {
+              return (indx === id) ? ((x.price + y.price)) : x.price
+            })
+
+            let updatedTotal = (updatedPrices * count)
           
           return {
-            total: prevState.items.reduce((x, y, indx) => {
-              return (indx === id) ? (x.price + y.price) : x.price
-            })
+            total: updatedTotal
           }
           
         }
