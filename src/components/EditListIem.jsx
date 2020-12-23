@@ -3,7 +3,7 @@ import {MasterContext} from '../contexts/MasterContext';
 
 const EditListItem = ({name, price, stock, count, saveItemName, itemId, setEditMode}) => {
 
-const {admin, calcTotal} = useContext(MasterContext);
+const {admin} = useContext(MasterContext);
 
 const [product, setProduct] = useState({
       name: name,
@@ -24,8 +24,7 @@ const [product, setProduct] = useState({
          alert('no text');
          return;
       }
-      saveItemName(product, itemId);
-      calcTotal(itemId, count, price);
+      saveItemName(product, itemId, count, price);
       setEditMode(false);
     };
 

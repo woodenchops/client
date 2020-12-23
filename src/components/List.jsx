@@ -29,7 +29,7 @@ const List = ({name, price, count, stock, itemId}) => {
         defaultListLayout = (
             <>
                 <span name={name}>{name}</span>
-                <button disabled={stock === 0} className={stock === 0 ? classes.Disabled : ''} onClick={() => addOneMoreToCart(itemId, price, stock)}>+</button>
+                <button disabled={stock === 0} className={stock === 0 ? classes.Disabled : ''} onClick={() => addOneMoreToCart(itemId, price, stock, count)}>+</button>
                 <button onClick={ () => deleteOneMoreFromCart(itemId, price, count) }>-</button> stock <span>{stock}</span> 
             </>
         )
