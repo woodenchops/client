@@ -26,7 +26,7 @@ export class MasterProvider extends Component {
           }
         ],
 
-      calcTotal: (id, count, price) => {
+      calcTotal: (id, count) => {
 
         this.setState(prevState => {
           if(count > 0) {
@@ -35,6 +35,7 @@ export class MasterProvider extends Component {
               return (indx === id) ? ((x.price + y.price)) : x.price
             })
 
+            console.log('prices', updatedPrices, 'count', count);
             let updatedTotal = (updatedPrices * count)
           
           return {
@@ -61,7 +62,7 @@ export class MasterProvider extends Component {
         
       },
     
-      saveItemName: (product, id) => {
+      saveItemName: (product, id, count, price) => {
 
         this.setState(prevState => {
           return {
@@ -75,6 +76,7 @@ export class MasterProvider extends Component {
             })]
           }
         });
+        this.state.calcTotal(id, count);
       },
     
       deleteItemFromOptionList: (id, price, count) => {
@@ -112,7 +114,7 @@ export class MasterProvider extends Component {
         }
       },
     
-      addOneMoreToCart: (id, itemPrice, stock) => {
+      addOneMoreToCart: (id, itemPrice, stock, count) => {
         if(stock > 0) {
         this.setState(prevState => {
           return {
@@ -126,8 +128,9 @@ export class MasterProvider extends Component {
             total: this.state.convertTotalIntoTwoDecimals(prevState.total, itemPrice, 'ADD')
           }
         });
-      } 
+      }
 
+  
       },
     
       deleteOneMoreFromCart: (id, itemPrice, count) => {
